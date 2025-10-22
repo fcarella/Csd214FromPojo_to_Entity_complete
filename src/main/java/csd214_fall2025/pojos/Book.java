@@ -13,6 +13,25 @@ public class Book extends Publication {
 
     }
 
+    @Override
+    public String toString() {
+        return "Book{" +
+                "author='" + author + '\'' +
+                "} " + super.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Book book)) return false;
+        if (!super.equals(o)) return false;
+        return Objects.equals(getAuthor(), book.getAuthor());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), getAuthor());
+    }
+
     public Book(String author) {
         this.author = author;
     }
@@ -55,29 +74,10 @@ public class Book extends Publication {
 
     }
 
-    @Override
-    public String toString() {
-        return "Book{" +
-                "author='" + author + '\'' +
-                "} " + super.toString();
-    }
-//    @Override
+    //    @Override
 //    public String toString() {
 //        String format="Author: %-20s";
 //        return super.toString() + " " + String.format(format, getAuthor());
 //    }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        Book book = (Book) o;
-        return Objects.equals(author, book.author);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), author);
-    }
 }

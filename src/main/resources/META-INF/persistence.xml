@@ -7,9 +7,9 @@
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
         <!-- List all your entity classes here -->
-<!--        <class>csd214_fall2025.entites.BookEntity</class>-->
-<!--        <class>csd214_fall2025.entites.PublicationEntity</class>-->
-<!--        <class>csd214_fall2025.entites.EditableEntity</class>-->
+        <class>csd214_fall2025.entites.BookEntity</class>
+        <class>csd214_fall2025.entites.PublicationEntity</class>
+        <class>csd214_fall2025.entites.ProductEntity</class>
 
         <properties>
             <!-- Database Connection Details -->

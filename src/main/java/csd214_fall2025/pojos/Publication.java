@@ -10,10 +10,7 @@ import java.util.Objects;
 /**
  * DTO for {@link csd214_fall2025.entites.PublicationEntity}
  */
-/**
- * DTO for {@link csd214_fall2025.entites.PublicationEntity}
- */
-public abstract class Publication extends Product implements SaleableItem, Serializable {
+public abstract class Publication extends Product {
     private String title;
     private double price;
     private int copies;
@@ -34,15 +31,25 @@ public abstract class Publication extends Product implements SaleableItem, Seria
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Publication that = (Publication) o;
-        return Double.compare(price, that.price) == 0 && copies == that.copies && Objects.equals(title, that.title);
+        if (!(o instanceof Publication that)) return false;
+        if (!super.equals(o)) return false;
+        return Double.compare(getPrice(), that.getPrice()) == 0 && getCopies() == that.getCopies() && Objects.equals(getTitle(), that.getTitle()) && Objects.equals(getIsbn_10(), that.getIsbn_10()) && Objects.equals(getDescription(), that.getDescription());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(title, price, copies);
+        return Objects.hash(super.hashCode(), getTitle(), getPrice(), getCopies(), getIsbn_10(), getDescription());
+    }
+
+    @Override
+    public String toString() {
+        return "Publication{" +
+                "title='" + title + '\'' +
+                ", price=" + price +
+                ", copies=" + copies +
+                ", isbn_10='" + isbn_10 + '\'' +
+                ", description='" + description + '\'' +
+                "} " + super.toString();
     }
 
     public String getDescription() {
@@ -91,17 +98,7 @@ public abstract class Publication extends Product implements SaleableItem, Seria
         copies--;
     }
 
-    @Override
-    public String toString() {
-        return "Publication{" +
-                "title='" + title + '\'' +
-                ", price=" + price +
-                ", copies=" + copies +
-                ", isbn_10='" + isbn_10 + '\'' +
-                ", description='" + description + '\'' +
-                "} " + super.toString();
-    }
-//    @Override
+    //    @Override
 //    public String toString() {
 //        String format="%-20s Title: %-20s Price: $%-4.2f Copies: %-2d";
 //        return String.format(format,this.getClass().getSimpleName(), title, price, copies);
